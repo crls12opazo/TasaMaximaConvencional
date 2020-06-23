@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+ 
+
+{% block main %}
+ 
+ 
+<section class="page-section">
+ 
+<div class="d-inline-flex p-8"> 
+    <form class="contactForm" method="POST">
+		{% csrf_token %}
+		<label> Ingrese las UF a solicitar </label>
+		{{ form.monto }}
+		<label> Ingrese el plazo en días </label>
+		{{ form.plazo }}
+		<label> Seleccione la fecha del credito </label>
+		{{ form.fecha }}
+		<br/>
+		<button class="btn btn-primary btn-xl">Calcular</button>
+	</form>
+       
+</div>
+{% if tasa %}	
+<div class='container'>
+    <div class="container" >
+        <br/>
+        
+        <h2 id="resultado">La tasa máxima convencional  para la fecha {{ fecha.day }}-{{ fecha.month }}-{{ fecha.year }} con monto solicitado de UF {{monto}} y {{plazo}} dias de plazo  es de un  {{ tasa }} %</h3>    
+        <br/>
+        <input id="btnVolver" type="button" value="Calcular otro monto" class="btn-primary" onclick="volver()">
+ 
+      
+    </div>
+</div>
+
+{% endif %}  
+</section>
+{% endblock %}
